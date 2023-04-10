@@ -10,6 +10,7 @@ function App() {
     setLoading(true);
     const response = await fetch("https://reqres.in/api/users");
     const data = await response.json();
+    console.log(data)
     setProfile(data.data);
     setLoading(false);
   };
@@ -27,9 +28,9 @@ function App() {
             {loading ? (
               <Fragment>loading..</Fragment>
             ) : (
-              profile.map(i => {
-                <Fragment>
-                  <ul>
+              profile.map((i) => {
+                return(<Fragment>
+                  <ul key={i.id}>
                     <li>{i.id}</li>
                     <li>{i.email}</li>
                     <li>{i.first_name}</li>
@@ -38,7 +39,7 @@ function App() {
                       <image src={i.avatar} />
                     </li>
                   </ul>
-                </Fragment>;
+                </Fragment>)
               })
             )}
               </div>
